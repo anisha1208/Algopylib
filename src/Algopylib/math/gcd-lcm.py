@@ -20,7 +20,8 @@ def gcd(a, b):
 
 
 def lcm(a, b):
-    """Computes the lowest common multiple of integers a and b."""
+    """Computes the lowest common multiple of integers a and b.
+       lcm = product of two number / gcd """
     return abs(a) * abs(b) / gcd(a, b)
 
 
