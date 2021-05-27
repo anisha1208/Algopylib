@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 
 
 def bubble_sort(arr : List , simulation : bool = False) -> List:
@@ -49,7 +49,7 @@ def bubble_sort(arr : List , simulation : bool = False) -> List:
     return arr
 
 
-def insertion_sort(arr, simulation=False):
+def insertion_sort(arr : List , simulation : bool = False) -> List:
     """ Insertion Sort
         Complexity: O(n^2)
         1: Iterate from arr[1] to arr[n] over the array. 
@@ -57,13 +57,13 @@ def insertion_sort(arr, simulation=False):
         3: If the key element is smaller than its predecessor, compare it to the elements before. Move the greater elements one position up to make space for the swapped element.
     """
     
-    iteration = 0
+    iteration : int = 0
     if simulation:
         print("iteration",iteration,":",*arr)
         
     for i in range(len(arr)):
-        cursor = arr[i]
-        pos = i
+        cursor : Union[int, float, complex, str] = arr[i]
+        pos : int = i
         """ Move elements of arr[0..i-1], that are greater than key, to one position ahead of their current position"""
         
         while pos > 0 and arr[pos - 1] > cursor:
