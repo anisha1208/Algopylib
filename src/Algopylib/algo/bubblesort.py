@@ -1,20 +1,16 @@
-"""
-https://en.wikipedia.org/wiki/Bubble_sort
-Worst-case performance: O(N^2)
-If you call bubble_sort(arr,True), you can see the process of the sort
-Default is simulation = False
-"""
 from typing import List
 
 def bubble_sort(arr : List , simulation : bool = False) -> List:
     """Sorts A List using bubble sort algorithm
+    https://en.wikipedia.org/wiki/Bubble_sort
+    Worst-case performance: O(N^2)
 
     Parameters:
-    arr(List) : Unsorted List 
-    simulation(bool) : to enable simulation (default argument is False) 
+        arr(List) : Unsorted List 
+        simulation(bool) : to enable simulation (default argument is False) 
 
     Returns:
-    arr(List) : Returns sorted List
+        arr(List) : Returns sorted List
 
     """
 
@@ -22,11 +18,11 @@ def bubble_sort(arr : List , simulation : bool = False) -> List:
         """Swaps two element of List 
 
         Parameters:
-        i(int) : index of first element
-        j(int) : index of second element
+            i(int) : index of first element
+            j(int) : index of second element
 
         Returns:
-        None : Function returns nothing
+            None : Function returns nothing
 
         """
         arr[i], arr[j] = arr[j], arr[i]
