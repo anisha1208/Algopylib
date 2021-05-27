@@ -11,4 +11,4 @@
 - [ ] add the following things to algo part:
     * isPowerof2()
     * isSquare()
-    * isPalindrom()
+    * isPalindrome()
