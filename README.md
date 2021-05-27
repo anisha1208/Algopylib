@@ -21,4 +21,4 @@
     * ```pip install wheel```  
     * ```pip install twine```
     * ```pip install mypy```  
-5. To compile libaray run "python setup.py sdist bdist_wheel" in terminal   
+5. To compile libaray run ```python setup.py sdist bdist_wheel``` in terminal   
