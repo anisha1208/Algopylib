@@ -6,3 +6,4 @@ lbenv.yml
 build
 dist
 Algopylib.egg-info
+venv.txt
