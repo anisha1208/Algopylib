@@ -1,6 +1,6 @@
 def gcd(a : int, b : int) -> int:
     """Computes the greatest common divisor of integers a and b using Euclid's Algorithm.
-    gcd{𝑎, 𝑏} = gcd{−𝑎, 𝑏} = gcd{𝑎, −𝑏} = gcd{−𝑎, −𝑏}
+    gcd(a, b) = gcd(−a, b) = gcd(a, −b) = gcd(−a, −b)
     See proof: https://proofwiki.org/wiki/GCD_for_Negative_Integers
     """
     a_int : bool = isinstance(a, int)

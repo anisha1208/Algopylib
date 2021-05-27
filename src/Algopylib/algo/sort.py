@@ -1,6 +1,5 @@
 from typing import List, Union
 
-
 def bubble_sort(arr : List , simulation : bool = False) -> List:
     """Sorts A List using bubble sort algorithm
     https://en.wikipedia.org/wiki/Bubble_sort
@@ -48,18 +47,17 @@ def bubble_sort(arr : List , simulation : bool = False) -> List:
                     
     return arr
 
-
 def insertion_sort(arr : List , simulation : bool = False) -> List:
     """ Insertion Sort
-        Complexity: O(n^2)
-        1: Iterate from arr[1] to arr[n] over the array. 
-        2: Compare the current element (key) to its predecessor. 
-        3: If the key element is smaller than its predecessor, compare it to the elements before. Move the greater elements one position up to make space for the swapped element.
+    Complexity: O(n^2)
+    1: Iterate from arr[1] to arr[n] over the array. 
+    2: Compare the current element (key) to its predecessor. 
+    3: If the key element is smaller than its predecessor, compare it to the elements before. Move the greater elements one position up to make space for the swapped element.
     """
     
     iteration : int = 0
     if simulation:
-        print("iteration",iteration,":",*arr)
+        print("iteration", iteration, ":", *arr)
         
     for i in range(len(arr)):
         cursor : Union[int, float, complex, str] = arr[i]

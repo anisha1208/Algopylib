@@ -16,3 +16,12 @@ def is_square():
 
 def is_palindrome():
     pass
+
+def is_subsequence():
+    pass
+
+def is_even():
+    pass
+
+def is_odd():
+    pass
