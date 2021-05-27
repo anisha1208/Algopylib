@@ -13,6 +13,9 @@ def insertion_sort(arr, simulation=False):
     for i in range(len(arr)):
         cursor = arr[i]
         pos = i
+        # Move elements of arr[0..i-1], that are
+        # greater than key, to one position ahead
+        # of their current position
         
         while pos > 0 and arr[pos - 1] > cursor:
             # Swap the number down the list
