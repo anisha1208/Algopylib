@@ -1,0 +1,8 @@
+.vscode
+testenv
+__pycache__
+lbenv
+lbenv.yml
+build
+dist
+Algopylib.egg-info
