@@ -6,7 +6,7 @@ a = 11
 b = 111
 Return result as "1000".
 """
-def binary_sum(a,b):
+def binary_sum(a : int ,b : int) -> str : 
     a=str(a)
     b=str(b)
     s = ""
