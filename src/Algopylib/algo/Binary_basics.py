@@ -19,7 +19,7 @@ def binary_sum(a : int ,b : int) -> str :
         if (j >= 0):
             c += ord(b[j]) - zero
             j -= 1
-        s = chr(c % 2 + zero) + s
+        s : str = chr(c % 2 + zero) + s
         c //= 2 
         
     return s
