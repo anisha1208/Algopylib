@@ -8,7 +8,7 @@
 
 # Coding Part :
 
-- [ ] add the following things to algo part:
+- [x] add the following things to algo part:
     * isPowerof2()
     * isSquare()
     * isPalindrome()

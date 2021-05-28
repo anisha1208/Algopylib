@@ -1,6 +1,6 @@
 import math
 
-def is_power_of_2(num:int) ->bool:
+def is_power_of_2(num : int) -> bool:
     """
     Finds whether a number is a power of 2.
 
@@ -20,7 +20,7 @@ def is_power_of_2(num:int) ->bool:
 
     
 
-def is_square(num:int) ->bool:
+def is_square(num : int) -> bool:
      """
     Check if a number is perfect square number or not.
 
@@ -30,7 +30,7 @@ def is_square(num:int) ->bool:
     Returns:
         True if number is square number, otherwise False
     """
-     if num<0:
+     if num < 0:
          raise ValueError("math domain error")
      if math.sqrt(num) * math.sqrt(num) == num:
         return True
@@ -39,7 +39,7 @@ def is_square(num:int) ->bool:
     
 
 
-def is_palindrome(s:str)-> bool:
+def is_palindrome(s : str) -> bool:
     """
     Checks if a given string is palindrome or not.
     A string is said to be palindrome if the reverse of the string is the same as string.
@@ -58,7 +58,7 @@ def is_palindrome(s:str)-> bool:
 
     
 
-def is_subsequence(str1 : str, str2 : str) ->bool:
+def is_subsequence(str1 : str, str2 : str) -> bool:
     """
     Given two strings string1 and string2, finds if string1 is a subsequence of string2.
     
@@ -71,10 +71,10 @@ def is_subsequence(str1 : str, str2 : str) ->bool:
     Returns:
         True if subsequence, else False
     """
-    len_str1 = len(str1)
-    len_str2 = len(str2)
-    i = 0  
-    j = 0  
+    len_str1 : int = len(str1)
+    len_str2 : int = len(str2)
+    i : int = 0  
+    j : int = 0  
     # Traverse both str1 and str2
     while i < len_str1 and j < len_str2:
         # Compare current character of str2 with str1
@@ -86,8 +86,8 @@ def is_subsequence(str1 : str, str2 : str) ->bool:
     
 
 
-def is_even(num:int) ->bool:
-     """
+def is_even(num : int) -> bool:
+    """
     Check if a number is even or not.
 
     Parameters:
@@ -96,13 +96,13 @@ def is_even(num:int) ->bool:
     Returns:
         True if number is even, otherwise False
     """
-     if (num%2)==0:
+    if (num%2) == 0:
         return True
-     else:
-         return False
+    else:
+        return False
     
 
-def is_odd(num:int) ->bool:
+def is_odd(num : int) ->bool:
     """
     Checks if a number is odd or not.
 
@@ -112,12 +112,12 @@ def is_odd(num:int) ->bool:
     Returns:
         True if number is odd, otherwise False
     """
-    if (num%2)!=0:
+    if (num%2) != 0:
         return True
     else:
          return False
     
-def is_prime(num:int)->bool:
+def is_prime(num : int) -> bool:
     """
     Checks if a number is prime or not.
 
@@ -127,11 +127,12 @@ def is_prime(num:int)->bool:
     Returns:
         True if number is prime, otherwise False
     """
-    flag = True
-    if num<=0:
+    flag : bool = True
+
+    if num <= 0:
         raise ValueError("Input argument should be a natural number")
-    elif num==1:
-        flag=False 
+    elif num == 1:
+        flag = False 
     else:
         # check for factors
         for i in range(2, num):
