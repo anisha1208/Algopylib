@@ -17,6 +17,26 @@ def is_power_of_2(num : int) -> bool:
             return True
         else:
             return False
+        
+
+def is_power_of_n(num:int,n :int) ->bool:
+    """
+    Check whether a number is a power of n.
+    Parameters:
+        num: the number to be checked
+        n: the number those power num is checked
+    Returns:
+        True if number is a power of n, otherwise False
+    """
+    
+    if num <= 0:
+        raise ValueError
+    else:
+        
+        if(math.ceil(math.log10(num)/math.log10(n))==math.floor(math.log10(num)/math.log10(n))):
+            return True
+        else:
+            return False
 
     
 
