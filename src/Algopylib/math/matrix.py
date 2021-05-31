@@ -4,8 +4,13 @@ from decimal import Decimal
 def det2(matrix: list[list[float]]) -> float:
     ''' Determinant of a 2x2 matrix. '''
     return matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1]
+def det3(matrix: list[list[float]]) -> float:
+    ''' Determinant of a 3x3 matrix. '''
+    return ( matrix[0][0] * (matrix[1][1] * matrix[2][2] - matrix[2][1] * matrix[1][2]) -
+            matrix[0][1] * (matrix[1][0] * matrix[2][2] - matrix[1][2] * matrix[2][0]) +
+            matrix[0][2] * (matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0]) )
 
-def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
+def inverse_of_matrix_2(matrix: list[list[float]]) -> list[list[float]]:
     """
     A matrix multiplied with its inverse gives the identity matrix.
     This function finds the inverse of a 2x2 matrix.
