@@ -72,9 +72,25 @@ def is_inside_circle(circle_x: float, circle_y: float, rad: float, x: float, y: 
                 return True
         else:
                 return False
+                
+
+def area_triangle(side1: float, side2: float, side3: float) -> float:
+        """
+        Calculates area of triangle using Heron's Formula when the length of 3 sides are known.
         
+        Parameters:
+                side1, side2, side3 : Lengths of three sides of the triangle.
+        
+        Returns:
+                Area of the triangle upto two decimal values.
+        """
+        if side1 < 0 or side2 < 0 or side3 < 0:
+                raise ValueError("Length of side can only be a non-negative value")
 
+        elif side1 + side2 < side3 or side1 + side3 < side2 or side2 + side3 < side1:
+                raise ValueError("Given three sides do not form a triangle")
 
-
-
+        semi_per = (side1 + side2 + side3) / 2
+        area = math.sqrt((semi_per) * (semi_per - side1) * (semi_per - side2) * (semi_per - side3) )
+        return round(area , 2)
 
