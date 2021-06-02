@@ -75,26 +75,6 @@ def _sum(data, start=0):
     """_sum(data [, start]) -> (type, sum, count)
     Return a high-precision sum of the given numeric data as a fraction,
     together with the type to be converted to and the count of items.
-    If optional argument ``start`` is given, it is added to the total.
-    If ``data`` is empty, ``start`` (defaulting to 0) is returned.
-    Examples
-    --------
-    >>> _sum([3, 2.25, 4.5, -0.5, 1.0], 0.75)
-    (<class 'float'>, Fraction(11, 1), 5)
-    Some sources of round-off error will be avoided:
-    # Built-in sum returns zero.
-    >>> _sum([1e50, 1, -1e50] * 1000)
-    (<class 'float'>, Fraction(1000, 1), 3000)
-    Fractions and Decimals are also supported:
-    >>> from fractions import Fraction as F
-    >>> _sum([F(2, 3), F(7, 5), F(1, 4), F(5, 6)])
-    (<class 'fractions.Fraction'>, Fraction(63, 20), 4)
-    >>> from decimal import Decimal as D
-    >>> data = [D("0.1375"), D("0.2108"), D("0.3061"), D("0.0419")]
-    >>> _sum(data)
-    (<class 'decimal.Decimal'>, Fraction(6963, 10000), 4)
-    Mixed types are currently treated as an error, except that int is
-    allowed.
     """
     count = 0
     n, d = _exact_ratio(start)
@@ -157,9 +137,6 @@ def _coerce(T, S):
 
 def _exact_ratio(x):
     """Return Real number x to exact (numerator, denominator) pair.
-    >>> _exact_ratio(0.25)
-    (1, 4)
-    x is expected to be an int, Fraction, Decimal or float.
     """
     try:
         # Optimise the common case of floats. We expect that the most often
@@ -202,23 +179,6 @@ def _convert(value, T):
         else:
             raise
 
-
-def _find_lteq(a, x):
-    'Locate the leftmost value exactly equal to x'
-    i = bisect_left(a, x)
-    if i != len(a) and a[i] == x:
-        return i
-    raise ValueError
-
-
-def _find_rteq(a, l, x):
-    'Locate the rightmost value exactly equal to x'
-    i = bisect_right(a, x, lo=l)
-    if i != (len(a) + 1) and a[i - 1] == x:
-        return i - 1
-    raise ValueError
-
-
 def _fail_neg(values, errmsg='negative value'):
     """Iterate over values, failing if any are less than zero."""
     for x in values:
@@ -231,15 +191,6 @@ def _fail_neg(values, errmsg='negative value'):
 
 def mean(data):
     """Return the sample arithmetic mean of data.
-    >>> mean([1, 2, 3, 4, 4])
-    2.8
-    >>> from fractions import Fraction as F
-    >>> mean([F(3, 7), F(1, 21), F(5, 3), F(1, 3)])
-    Fraction(13, 21)
-    >>> from decimal import Decimal as D
-    >>> mean([D("0.5"), D("0.75"), D("0.625"), D("0.375")])
-    Decimal('0.5625')
-    If ``data`` is empty, StatisticsError will be raised.
     """
     if iter(data) is data:
         data = list(data)
@@ -255,8 +206,6 @@ def fmean(data, weights=None):
     """Convert data to floats and compute the arithmetic mean.
     This runs faster than the mean() function and it always returns a float.
     If the input dataset is empty, it raises a StatisticsError.
-    >>> fmean([3.5, 4.0, 5.25])
-    4.25
     """
     try:
         n = len(data)
@@ -289,12 +238,7 @@ def fmean(data, weights=None):
 
 def geometric_mean(data):
     """Convert data to floats and compute the geometric mean.
-    Raises a StatisticsError if the input dataset is empty,
-    if it contains a zero, or if it contains a negative value.
-    No special efforts are made to achieve exact results.
-    (However, this may change in the future.)
-    >>> round(geometric_mean([54, 24, 36]), 9)
-    36.0
+    Raises a StatisticsError if the input dataset is empty.
     """
     try:
         return exp(fmean(map(log, data)))
@@ -308,15 +252,6 @@ def harmonic_mean(data, weights=None):
     The harmonic mean is the reciprocal of the arithmetic mean of the
     reciprocals of the data.  It can be used for averaging ratios or
     rates, for example speeds.
-    Suppose a car travels 40 km/hr for 5 km and then speeds-up to
-    60 km/hr for another 5 km. What is the average speed?
-        >>> harmonic_mean([40, 60])
-        48.0
-    Suppose a car travels 40 km/hr for 5 km, and when traffic clears,
-    speeds-up to 60 km/hr for the remaining 30 km of the journey. What
-    is the average speed?
-        >>> harmonic_mean([40, 60], weights=[5, 30])
-        56.0
     If ``data`` is empty, or any element is less than zero,
     ``harmonic_mean`` will raise ``StatisticsError``.
     """
@@ -357,11 +292,7 @@ def median(data):
     """Return the median (middle value) of numeric data.
     When the number of data points is odd, return the middle data point.
     When the number of data points is even, the median is interpolated by
-    taking the average of the two middle values:
-    >>> median([1, 3, 5])
-    3
-    >>> median([1, 3, 5, 7])
-    4.0
+    taking the average of the two middle values.
     """
     data = sorted(data)
     n = len(data)
@@ -378,10 +309,6 @@ def median_low(data):
     """Return the low median of numeric data.
     When the number of data points is odd, the middle value is returned.
     When it is even, the smaller of the two middle values is returned.
-    >>> median_low([1, 3, 5])
-    3
-    >>> median_low([1, 3, 5, 7])
-    3
     """
     data = sorted(data)
     n = len(data)
@@ -397,10 +324,6 @@ def median_high(data):
     """Return the high median of data.
     When the number of data points is odd, the middle value is returned.
     When it is even, the larger of the two middle values is returned.
-    >>> median_high([1, 3, 5])
-    3
-    >>> median_high([1, 3, 5, 7])
-    5
     """
     data = sorted(data)
     n = len(data)
@@ -411,24 +334,8 @@ def median_high(data):
 
 def median_grouped(data, interval=1):
     """Return the 50th percentile (median) of grouped continuous data.
-    >>> median_grouped([1, 2, 2, 3, 4, 4, 4, 4, 4, 5])
-    3.7
-    >>> median_grouped([52, 52, 53, 54])
-    52.5
     This calculates the median as the 50th percentile, and should be
-    used when your data is continuous and grouped. In the above example,
-    the values 1, 2, 3, etc. actually represent the midpoint of classes
-    0.5-1.5, 1.5-2.5, 2.5-3.5, etc. The middle value falls somewhere in
-    class 3.5-4.5, and interpolation is used to estimate it.
-    Optional argument ``interval`` represents the class interval, and
-    defaults to 1. Changing the class interval naturally will change the
-    interpolated 50th percentile value:
-    >>> median_grouped([1, 3, 3, 5, 7], interval=1)
-    3.25
-    >>> median_grouped([1, 3, 3, 5, 7], interval=2)
-    3.5
-    This function does not check whether the data points are at least
-    ``interval`` apart.
+    used when your data is continuous and grouped. 
     """
     data = sorted(data)
     n = len(data)
@@ -461,17 +368,7 @@ def median_grouped(data, interval=1):
 
 def mode(data):
     """Return the most common data point from discrete or nominal data.
-    ``mode`` assumes discrete data, and returns a single value. This is the
-    standard treatment of the mode as commonly taught in schools:
-        >>> mode([1, 1, 2, 3, 3, 3, 3, 4])
-        3
-    This also works with nominal (non-numeric) data:
-        >>> mode(["red", "blue", "blue", "red", "green", "red", "red"])
-        'red'
-    If there are multiple modes with same frequency, return the first one
-    encountered:
-        >>> mode(['red', 'red', 'green', 'blue', 'blue'])
-        'red'
+    ``mode`` assumes discrete data, and returns a single value.
     If *data* is empty, ``mode``, raises StatisticsError.
     """
     pairs = Counter(iter(data)).most_common(1)
@@ -485,12 +382,6 @@ def multimode(data):
     """Return a list of the most frequently occurring values.
     Will return more than one result if there are multiple modes
     or an empty list if *data* is empty.
-    >>> multimode('aabbbbbbbbcc')
-    ['b']
-    >>> multimode('aabbbbccddddeeffffgg')
-    ['b', 'd', 'f']
-    >>> multimode('')
-    []
     """
     counts = Counter(iter(data)).most_common()
     maxcount, mode_items = next(groupby(counts, key=itemgetter(1)), (0, []))
@@ -498,23 +389,8 @@ def multimode(data):
 
 # === Measures of spread ===
 
-# See http://mathworld.wolfram.com/Variance.html
-#     http://mathworld.wolfram.com/SampleVariance.html
-#     http://en.wikipedia.org/wiki/Algorithms_for_calculating_variance
-#
-# Under no circumstances use the so-called "computational formula for
-# variance", as that is only suitable for hand calculations with a small
-# amount of low-precision data. It has terrible numeric properties.
-#
-# See a comparison of three computational methods here:
-# http://www.johndcook.com/blog/2008/09/26/comparing-three-methods-of-computing-standard-deviation/
-
 def _ss(data, c=None):
     """Return sum of square deviations of sequence data.
-    If ``c`` is None, the mean is calculated in one pass, and the deviations
-    from the mean are calculated in a second pass. Otherwise, deviations are
-    calculated from ``c`` as given. Use the second case with care, as it can
-    lead to garbage results.
     """
     if c is not None:
         T, total, count = _sum((x-c)**2 for x in data)
@@ -534,28 +410,7 @@ def variance(data, xbar=None):
     """Return the sample variance of data.
     data should be an iterable of Real-valued numbers, with at least two
     values. The optional argument xbar, if given, should be the mean of
-    the data. If it is missing or None, the mean is automatically calculated.
-    Use this function when your data is a sample from a population. To
-    calculate the variance from the entire population, see ``pvariance``.
-    Examples:
-    >>> data = [2.75, 1.75, 1.25, 0.25, 0.5, 1.25, 3.5]
-    >>> variance(data)
-    1.3720238095238095
-    If you have already calculated the mean of your data, you can pass it as
-    the optional second argument ``xbar`` to avoid recalculating it:
-    >>> m = mean(data)
-    >>> variance(data, m)
-    1.3720238095238095
-    This function does not check that ``xbar`` is actually the mean of
-    ``data``. Giving arbitrary values for ``xbar`` may lead to invalid or
-    impossible results.
-    Decimals and Fractions are supported:
-    >>> from decimal import Decimal as D
-    >>> variance([D("27.5"), D("30.25"), D("30.25"), D("34.5"), D("41.75")])
-    Decimal('31.01875')
-    >>> from fractions import Fraction as F
-    >>> variance([F(1, 6), F(1, 2), F(5, 3)])
-    Fraction(67, 108)
+    the data. 
     """
     if iter(data) is data:
         data = list(data)
@@ -570,26 +425,7 @@ def pvariance(data, mu=None):
     """Return the population variance of ``data``.
     data should be a sequence or iterable of Real-valued numbers, with at least one
     value. The optional argument mu, if given, should be the mean of
-    the data. If it is missing or None, the mean is automatically calculated.
-    Use this function to calculate the variance from the entire population.
-    To estimate the variance from a sample, the ``variance`` function is
-    usually a better choice.
-    Examples:
-    >>> data = [0.0, 0.25, 0.25, 1.25, 1.5, 1.75, 2.75, 3.25]
-    >>> pvariance(data)
-    1.25
-    If you have already calculated the mean of the data, you can pass it as
-    the optional second argument to avoid recalculating it:
-    >>> mu = mean(data)
-    >>> pvariance(data, mu)
-    1.25
-    Decimals and Fractions are supported:
-    >>> from decimal import Decimal as D
-    >>> pvariance([D("27.5"), D("30.25"), D("30.25"), D("34.5"), D("41.75")])
-    Decimal('24.815')
-    >>> from fractions import Fraction as F
-    >>> pvariance([F(1, 4), F(5, 4), F(1, 2)])
-    Fraction(13, 72)
+    the data. 
     """
     if iter(data) is data:
         data = list(data)
@@ -602,9 +438,6 @@ def pvariance(data, mu=None):
 
 def stdev(data, xbar=None):
     """Return the square root of the sample variance.
-    See ``variance`` for arguments and other details.
-    >>> stdev([1.5, 2.5, 2.5, 2.75, 3.25, 4.75])
-    1.0810874155219827
     """
     var = variance(data, xbar)
     try:
@@ -615,9 +448,6 @@ def stdev(data, xbar=None):
 
 def pstdev(data, mu=None):
     """Return the square root of the population variance.
-    See ``pvariance`` for arguments and other details.
-    >>> pstdev([1.5, 2.5, 2.5, 2.75, 3.25, 4.75])
-    0.986893273527251
     """
     var = pvariance(data, mu)
     try:
@@ -637,15 +467,6 @@ def covariance(x, y, /):
     """Covariance
     Return the sample covariance of two inputs *x* and *y*. Covariance
     is a measure of the joint variability of two inputs.
-    >>> x = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    >>> y = [1, 2, 3, 1, 2, 3, 1, 2, 3]
-    >>> covariance(x, y)
-    0.75
-    >>> z = [9, 8, 7, 6, 5, 4, 3, 2, 1]
-    >>> covariance(x, z)
-    -7.5
-    >>> covariance(z, x)
-    -7.5
     """
     n = len(x)
     if len(y) != n:
@@ -657,29 +478,3 @@ def covariance(x, y, /):
     sxy = fsum((xi - xbar) * (yi - ybar) for xi, yi in zip(x, y))
     return sxy / (n - 1)
 
-def pdf(self, x):
-    "Probability density function.  P(x <= X < x+dx) / dx"
-    variance = self._sigma ** 2.0
-    if not variance:
-        raise StatisticsError('pdf() not defined when sigma is zero')
-    return exp((x - self._mu)**2.0 / (-2.0*variance)) / sqrt(tau*variance)
-def cdf(self, x):
-    "Cumulative distribution function.  P(X <= x)"
-     if not self._sigma:
-        raise StatisticsError('cdf() not defined when sigma is zero')
-     return 0.5 * (1.0 + erf((x - self._mu) / (self._sigma * sqrt(2.0))))
-def inv_cdf(self, p):
-    """Inverse cumulative distribution function.  x : P(X <= x) = p
-        Finds the value of the random variable such that the probability of
-        the variable being less than or equal to that value equals the given
-        probability.
-        This function is also called the percent point function or quantile
-        function.
-        """
-    if p <= 0.0 or p >= 1.0:
-        raise StatisticsError('p must be in the range 0.0 < p < 1.0')
-    if self._sigma <= 0.0:
-        raise StatisticsError('cdf() not defined when sigma at or below zero')
-    return _normal_dist_inv_cdf(p, self._mu, self._sigma)
-
-    
