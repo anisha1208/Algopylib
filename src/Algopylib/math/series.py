@@ -1,3 +1,7 @@
+"""
+Functions on Arithmetic and Geometric Progression Series. 
+"""
+
 import math
 
 def nth_term_ap(a: float, d: float, n: int) -> float:
