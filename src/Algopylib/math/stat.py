@@ -179,6 +179,22 @@ def _convert(value, T):
         else:
             raise
 
+def _find_lteq(a, x):
+    'Locate the leftmost value exactly equal to x'
+    i = bisect_left(a, x)
+    if i != len(a) and a[i] == x:
+        return i
+    raise ValueError
+
+
+def _find_rteq(a, l, x):
+    'Locate the rightmost value exactly equal to x'
+    i = bisect_right(a, x, lo=l)
+    if i != (len(a) + 1) and a[i - 1] == x:
+        return i - 1
+    raise ValueError
+
+
 def _fail_neg(values, errmsg='negative value'):
     """Iterate over values, failing if any are less than zero."""
     for x in values:
