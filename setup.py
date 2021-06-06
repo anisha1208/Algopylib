@@ -6,8 +6,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setuptools.setup(
     name = "Algopylib",
     version = "0.0.1",
-    author = "Dhaval Kumar",
-    author_email = "dhavalkumar741@gmail.com",
+    author = "Anisha Agrawal,Dhaval Kumar,Shivam Saxena",
+    author_email = "iiitalgopy@googlegroups.com",
     description = "A basic python library that has modules for maths and algorithms ",
     long_description = long_description,
     long_description_content_type = "text/markdown",
