@@ -97,3 +97,5 @@
     * ```pip install mypy```  
 5. To compile library, run ```python setup.py sdist bdist_wheel``` in terminal   
 ---
+
+Made with love at IIIT Naya Raipur
