@@ -1,4 +1,4 @@
-![logo](logo.png)
+![logo](https://raw.githubusercontent.com/still-n0thing/Algopylib/main/logo.png)
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![PyPI version](https://badge.fury.io/py/Algopylib.svg)](https://badge.fury.io/py/Algopylib)
