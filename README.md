@@ -1,7 +1,6 @@
-# Algopylib
+![logo](logo.png)
 
-
-[![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/pro-well-plan/pwptemp/blob/master/LICENSE.md)
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![PyPI version](https://badge.fury.io/py/Algopylib.svg)](https://badge.fury.io/py/Algopylib)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Downloads](https://pepy.tech/badge/algopylib)](https://pepy.tech/project/algopylib)
@@ -21,10 +20,34 @@ pip install Algopylib
 ## Usage
 
 ```python
-import Algopylib as apl
+import Algopylib.algo.check as ck
 
-apl.algo.check.is_power_of_2(32) # returns True 
-apl.math.combinatorics.fact(3) # returns 6
+ck.is_power_of_2(32) # returns True 
+ck.is_even(3) # returns False 
+```
+
+## Package Structure
+
+```bash
+├── Algopylib
+│   ├── algo
+│   │   ├── __init__.py
+│   │   ├── binary.py
+│   │   ├── check.py
+│   │   └── sort.py
+│   ├── math
+│   │   ├── __init__.py
+│   │   ├── combinatorics.py
+│   │   ├── gcd_lcm.py
+│   │   ├── geometry.py
+│   │   ├── matrix.py
+│   │   ├── series.py
+│   │   └── stat.py
+│   └── puzzle
+│       ├── __init__.py
+│       ├── sudoku.py
+│       └── tictaktoe.py
+└── __init__.py
 ```
 
 ### Contents
@@ -44,7 +67,6 @@ apl.math.combinatorics.fact(3) # returns 6
       - Is prime
    - [Sort](https://github.com/still-n0thing/Algopylib/blob/main/src/Algopylib/algo/sort.py)
       - Bubble sort
-      - Swap
       - Insertion sort
 
 ## [**Math**](https://github.com/still-n0thing/Algopylib/tree/main/src/Algopylib/math)
