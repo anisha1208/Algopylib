@@ -7,3 +7,4 @@ build
 dist
 Algopylib.egg-info
 venv.txt
+.mypy_cache
