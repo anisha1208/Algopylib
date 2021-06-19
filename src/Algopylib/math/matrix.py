@@ -44,7 +44,7 @@ def inverse_of_matrix_2(matrix: list[list[float]]) -> list[list[float]]:
 def inverse_of_matrix_3(matrix: list[list[float]]) -> list[list[float]]:
     
     invDet = 1 / det3;
-     D = Decimal  # An abbreviation to be conciseness
+    D = Decimal  # An abbreviation to be conciseness
     # Calculate the determinant of the matrix
     determinant = D(det3(matrix))
     if determinant == 0:

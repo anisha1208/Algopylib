@@ -1,7 +1,31 @@
 # Algopylib
 
+
+[![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/pro-well-plan/pwptemp/blob/master/LICENSE.md)
+[![PyPI version](https://badge.fury.io/py/Algopylib.svg)](https://badge.fury.io/py/Algopylib)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Downloads](https://pepy.tech/badge/algopylib)](https://pepy.tech/project/algopylib)
+
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+
 > A basic Python library that has modules for math functions, algorithms, and puzzles.
 
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install Algopylib.
+
+```bash
+pip install Algopylib 
+```
+
+## Usage
+
+```python
+import Algopylib as apl
+
+apl.algo.check.is_power_of_2(32) # returns True 
+apl.math.combinatorics.fact(3) # returns 6
+```
 
 ### Contents
 ## [**Algo**](https://github.com/still-n0thing/Algopylib/tree/main/src/Algopylib/algo)
@@ -76,7 +100,7 @@
 ---
 
 
-### Setup for devs
+## Setup for devs
 
 #### For Windows,
 1. Use ```pip install virtualenv```  
@@ -97,3 +121,10 @@
     * ```pip install mypy```  
 5. To compile library, run ```python setup.py sdist bdist_wheel``` in terminal   
 ---
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.  
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)

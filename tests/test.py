@@ -1,8 +1,6 @@
-import Algopylib.math.combinatorics as tl
+import Algopylib as apb
 
-# Not working correctly
-for i in range(11):
-    print(tl.fact(i))
+print(apb.algo.check.is_power_of_2(4))
 
 # Docsting doc style(not finalized)
 """Basic description of fucntion
