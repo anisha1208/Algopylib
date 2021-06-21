@@ -68,6 +68,9 @@ ck.is_even(3) # returns False
    - [Sort](https://github.com/still-n0thing/Algopylib/blob/main/src/Algopylib/algo/sort.py)
       - Bubble sort
       - Insertion sort
+      - Merge sort
+      - Heap sort
+      - Quick sort
 
 ## [**Math**](https://github.com/still-n0thing/Algopylib/tree/main/src/Algopylib/math)
 
