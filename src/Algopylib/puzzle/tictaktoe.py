@@ -1,18 +1,20 @@
-class TicTacToe:
-    game_name = 'Tic-Tac-Toe'
-    players = 2
+from typing import NoReturn, Tuple, Union
 
-    def __init__(self, seed=0):
+class TicTacToe:
+    game_name : str = 'Tic-Tac-Toe'
+    players : int = 2
+
+    def __init__(self, seed=0): 
         self.board = ['']*9
         self.current_player = 0
         self.history = []
 
-    def get_state_and_actions(self):  # Does not mutate data!
+    def get_state_and_actions(self) -> Tuple :  # Does not mutate data!
         actions = [i for i, s in enumerate(self.board) if s == '']
         sna = {'state': (self.board, self.current_player), 'actions': actions}
         return tuple([sna if i == self.current_player else None for i in range(self.players)])
 
-    def execute_actions(self, actions):  # Does change state
+    def execute_actions(self, actions) -> Union[Tuple, None]:  # Does change state
         self.history.append(actions)
         move_to_exec = actions[self.current_player]
         self.board[move_to_exec] = self.current_player
@@ -27,7 +29,7 @@ class TicTacToe:
         self.current_player = (self.current_player+1) % 2
         return None
 
-    def check_player_win(self, player):  # does not change state
+    def check_player_win(self, player) -> bool:  # does not change state
         for j in range(3):
             win = True
             for i in range(3):
@@ -45,3 +47,4 @@ class TicTacToe:
         if self.board[2] == self.board[4] == self.board[6] == player:
             return True
         return False
+

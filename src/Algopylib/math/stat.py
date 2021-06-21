@@ -494,3 +494,5 @@ def covariance(x, y, /):
     sxy = fsum((xi - xbar) * (yi - ybar) for xi, yi in zip(x, y))
     return sxy / (n - 1)
 
+# Thanks to cython for the following code 
+# Link : https://github.com/python/cpython/blob/3.9/Lib/statistics.py 

@@ -6,9 +6,7 @@ def bubble_sort(arr : List , simulation : bool = False) -> List:
     https://en.wikipedia.org/wiki/Bubble_sort
     Worst-case performance: O(N^2)
 
-    Parameters:
-        arr(List) : Unsorted List 
-        simulation(bool) : to enable simulation (default argument is False) 
+    
 
     Returns:
         arr(List) : Returns sorted List
@@ -90,10 +88,12 @@ def merge_sub(a : List[int], b : List[int]) -> List[int]:
         c(List) : Two pointer sorted List
 
     """
-    n = len(a)
-    m = len(b)
-    i, j, k = 0, 0, 0
-    c = [ 0 for i in range(n+m)]
+    n : int = len(a)
+    m : int = len(b)
+    i : int = 0
+    j : int = 0
+    k : int = 0
+    c : List[int] = [ 0 for i in range(n+m)]
 
     while(i < n or j < m):
         if(j == m or (i < n and a[i] < b[j])):
@@ -119,13 +119,13 @@ def merge_sort(a : List[int]) -> List[int]:
         a(List) : Returns sorted List
 
     """
-    n = len(a)
+    n : int = len(a)
 
     if(n < 2):
         return a
     
-    b = [ 0 for i in range(n//2)]
-    c = [ 0 for i in range(n - n//2)]
+    b : List[int] = [ 0 for i in range(n//2)]
+    c : List[int] = [ 0 for i in range(n - n//2)]
 
     for i in range(n):
         if (i < n//2):
@@ -146,8 +146,8 @@ def insert_heap(h : List[int], x : int) -> None:
 
     """
     h.append(x)
-    n = len(h)
-    i = n-1
+    n : int = len(h)
+    i : int = n-1
 
     while(i > 0 and h[i] < h[(i-1)//2]):
         h[i], h[(i-1)//2] = h[(i-1)//2], h[i]
@@ -165,14 +165,15 @@ def remove_min(h : List[int]) -> int:
         last_element(int) : Returns the smallest element of the heap
 
     """
-    n = len(h)
-    last_element = h[0]
+    n : int = len(h)
+    last_element : int = h[0]
 
     h[0], h[n-1] = h[n-1], h[0]
     h.pop()
     n = len(h)
 
-    i, j = 0, 0
+    i : int = 0 
+    j : int = 0
 
     while(2*i+1 < n):
         j = 2*i+1
@@ -194,7 +195,7 @@ def heap_sort(a : List[int]) -> None:
         a(List) : Unsorted List  
 
     """
-    temp = []
+    temp : List[int] = []
 
     for i in a:
         insert_heap(temp, i)
@@ -217,10 +218,10 @@ def quick_sort(a : List[int], l : int, r : int) -> None:
     if(r - l <= 1):
         return None
     
-    idx = randint(l, r-1)
+    idx : int = randint(l, r-1)
 
-    x = a[idx]
-    m = l
+    x : int = a[idx]
+    m : int = l
 
     for i in range(l, r, 1):
         if (a[i] < x):

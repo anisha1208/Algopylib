@@ -1,23 +1,23 @@
-def binary_sum(a : int ,b : int) -> str : 
+def binary_sum(x : int ,y : int) -> str : 
     """
     Given two binary number
     return their sum .
 
     For example,
-    a = 11
-    b = 111
+    x = 11
+    y = 111
     Return result as "1000".
     
     Parameters:
-        a(int) : binary number
-        b(int) : binary number
+        x(int) : binary number
+        y(int) : binary number
 
     Returns:
         s(str) : sum of a and b in string 
     
     """
-    a : str = str(a)
-    b : str = str(b)
+    a : str = str(x) 
+    b : str = str(y)
     s : str = ""
     c : int = 0
     i : int = len(a)-1

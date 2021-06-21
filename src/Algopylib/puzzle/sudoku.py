@@ -1,16 +1,30 @@
-def create_board():
-  a=[]
-  for i in range(9):
-    b=[int(x)  for x in input('enter the '+ str(i+1) +' row seperated by comma:').split(",")]
-    if len(b)!=9:
-      print('please enter again, length of row must be 9')
-      b=[int(x)  for x in input('enter the '+ str(i+1) +' row seperated by comma:').split(",")]
-      
-    a.append(b)
-  return a
+from typing import List, Tuple, Union
   
+def create_board() -> List[List[int]]:
+    """Creates a board for sudoku
+        
+        Returns:
+            a(List[List[int]]) : List of List that represents a sudoku board
 
-def print_board(b):
+    """
+    a : List = []
+    for i in range(9):
+        b : List[int] = [int(x)  for x in input('enter the '+ str(i+1) +' row seperated by comma:').split(",")]
+
+        if (len(b) != 9):
+            print("please enter again, length of row must be 9")
+            b = [int(x)  for x in input('enter the '+ str(i+1) +' row seperated by comma:').split(",")]
+        
+        a.append(b)
+    return a
+
+def print_board(b : List[List[int]]) -> None:
+    """Prints the sudoku board
+
+    Parameters:
+        b(List[List[int]]) :  List of List that represents a sudoku board
+        
+    """
     for i in range(len(b)):
         if i % 3 == 0 and i != 0:
             print("- - - - - - - - - - - - ")
@@ -25,7 +39,16 @@ def print_board(b):
                 print(str(b[i][j]) + " ", end="")
 
 
-def find_empty(b):
+def find_empty(b : List[List[int]]) -> Union[Tuple[int, int], None]:
+    """Finds the empty cell in sudoku
+
+    Parameters:
+        b(List[List[int]]) :  List of List that represents a sudoku board
+
+    Returns:
+        (i, j)(Tuple(i, j)) : index of empty cell
+
+    """
     for i in range(len(b)):
         for j in range(len(b[0])):
             if b[i][j] == 0:
@@ -33,7 +56,18 @@ def find_empty(b):
 
     return None
 
-def valid(b, num, pos):
+def valid(b : List[List[int]], num : int, pos : Tuple[int, int]) -> bool:
+    """Finds the empty cell in sudoku
+
+    Parameters:
+        b(List[List[int]]) :  List of List that represents a sudoku board
+        num(int) : number for a postion
+        pos(Tuple[int, int]) : index 
+
+    Returns:
+        (bool) : boolean that represents if inputs are valid or not
+
+    """
     # Check row
     for i in range(len(b[0])):
         if b[pos[0]][i] == num and pos[1] != i:
@@ -55,7 +89,17 @@ def valid(b, num, pos):
 
     return True
   
-def solve(b):
+def solve(b : List[List[int]]):
+    """Solves the sudoku
+
+    Parameters:
+        b(List[List[int]]) :  List of List that represents a sudoku board
+
+    Returns:
+        (bool) : index of empty cell
+
+    """
+
     find = find_empty(b)
     if not find:
         return True

@@ -70,7 +70,7 @@ def sum_gp(a: float, r: float, n: int) -> float:
         if n<0:
                 raise ValueError("n cannot be negative")
 
-        total = 0
+        total = float(0)
         value = a
         for i in range(n):
                 total = total + value

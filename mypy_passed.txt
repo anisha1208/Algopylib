@@ -1,9 +1,16 @@
 * algo
-    * 
+    * sort.py
+    * check.py
+    * binary.py
 
 * math
-    * gcd_lcm
-    * combinatorics
+    * gcd_lcm.py
+    * combinatorics.py
+    * geometry.py
+    * matrix.py
+    * series.py
+    * stat.py
 
 * puzzle
-    * 
+    * sudoku.py
+    * tictaktoe.py
